@@ -1,5 +1,5 @@
 import type {APIGatewayEvent, APIGatewayProxyResult, Context} from 'aws-lambda';
-import {Browser} from 'puppeteer-core';
+import {Browser, HTTPResponse} from 'puppeteer-core';
 import {BrowserMode, closeBrowser, getBrowser, version} from './chrome';
 import {userAgent} from './useragent';
 import {Protocol} from "devtools-protocol";
@@ -92,7 +92,7 @@ async function renderPage(
     }
 
     const waitForResponse = page.waitForResponse(
-        (response) =>
+        (response: HTTPResponse) =>
             response.url() === config.url && response.status() === 200
     );
 
