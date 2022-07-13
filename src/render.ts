@@ -217,14 +217,11 @@ function jsonResponse(body: any, statusCode: number = 201) {
 }
 
 async function handleEvent(event: any, browser: any): Promise<APIGatewayProxyResult> {
-    let response;
     if (event.requestContext.httpMethod === 'POST') {
-        response = await post(event.body, browser);
-    } else {
-        response = await get(event.queryStringParameters, browser);
+        return await post(event.body, browser);
     }
 
-    return response;
+    return await get(event.queryStringParameters, browser);
 }
 
 export const handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
