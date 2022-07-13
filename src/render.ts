@@ -154,8 +154,6 @@ async function renderPage(
 }
 
 function errorResponse(statusCode: number, message: string | Record<string, unknown>): APIGatewayProxyResult {
-    console.error(`${statusCode}: ${message}`);
-
     return jsonResponse({ message }, statusCode);
 }
 
